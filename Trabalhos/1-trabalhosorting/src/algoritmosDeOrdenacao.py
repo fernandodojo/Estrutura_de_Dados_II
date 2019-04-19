@@ -135,3 +135,82 @@ class QuickSort3(object):
 
         return (aux)
 
+class QuickSort2(object):
+    def ordenar(self, colecao):
+        self.sort(colecao, 0, len(colecao) - 1)
+
+        return colecao
+
+    def sort(self, colecao, left, right):
+        if left<right:
+            p = self.partition(colecao, left, right)
+            self.sort(colecao, left, p-1)
+            self.sort(colecao, p + 1, right)
+
+        
+    def get_pivot(self, colecao, left, right):
+        #mid = (right + left) // 2
+        #pivot = right
+        pivot = left
+        
+        '''if int(colecao[left]['weight']) < int(colecao[mid]['weight']):
+            if int(colecao[mid]['weight']) < int(colecao[right]['weight']):
+                pivot = mid
+        elif int(colecao[left]['weight']) < int(colecao[right]['weight']):
+            pivot = left'''
+        return pivot
+
+
+    def partition(self, colecao, left, right):
+        pivotIndex = self.get_pivot(colecao, left, right)
+        pivotValue = colecao[pivotIndex]
+        colecao[pivotIndex], colecao[left] = colecao[left], colecao[pivotIndex]
+        aux = left
+
+        for i in range(left, right + 1):
+            if int(colecao[i]['weight']) < int(pivotValue['weight']):
+                aux += 1
+                colecao[i], colecao[aux] = colecao[aux], colecao[i]
+        colecao[left], colecao[aux] = colecao[aux], colecao[left]
+
+        return (aux)
+
+class QuickSort1(object):
+    def ordenar(self, colecao):
+        self.sort(colecao, 0, len(colecao) - 1)
+
+        return colecao
+
+    def sort(self, colecao, left, right):
+        if left<right:
+            p = self.partition(colecao, left, right)
+            self.sort(colecao, left, p-1)
+            self.sort(colecao, p + 1, right)
+
+        
+    def get_pivot(self, colecao, left, right):
+        #mid = (right + left) // 2
+        pivot = right
+        
+        '''if int(colecao[left]['weight']) < int(colecao[mid]['weight']):
+            if int(colecao[mid]['weight']) < int(colecao[right]['weight']):
+                pivot = mid
+        elif int(colecao[left]['weight']) < int(colecao[right]['weight']):
+            pivot = left'''
+        return pivot
+
+
+    def partition(self, colecao, left, right):
+        pivotIndex = self.get_pivot(colecao, left, right)
+        pivotValue = colecao[pivotIndex]
+        colecao[pivotIndex], colecao[left] = colecao[left], colecao[pivotIndex]
+        aux = left
+
+        for i in range(left, right + 1):
+            if int(colecao[i]['weight']) < int(pivotValue['weight']):
+                aux += 1
+                colecao[i], colecao[aux] = colecao[aux], colecao[i]
+        colecao[left], colecao[aux] = colecao[aux], colecao[left]
+
+        return (aux)
+
