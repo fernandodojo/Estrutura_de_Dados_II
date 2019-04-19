@@ -122,13 +122,13 @@ class QuickSort3(object):
 
 
     def partition(self, colecao, left, right):
-        pivotIndex = self.get_pivot(colecao, left, right)
-        pivotValue = colecao[pivotIndex]
-        colecao[pivotIndex], colecao[left] = colecao[left], colecao[pivotIndex]
+        pindex = self.get_pivot(colecao, left, right)
+        pvalue = colecao[pindex]
+        colecao[pindex], colecao[left] = colecao[left], colecao[pindex]
         aux = left
 
         for i in range(left, right + 1):
-            if int(colecao[i]['weight']) < int(pivotValue['weight']):
+            if int(colecao[i]['weight']) < int(pvalue['weight']):
                 aux += 1
                 colecao[i], colecao[aux] = colecao[aux], colecao[i]
         colecao[left], colecao[aux] = colecao[aux], colecao[left]
@@ -149,26 +149,18 @@ class QuickSort2(object):
 
         
     def get_pivot(self, colecao, left, right):
-        #mid = (right + left) // 2
-        #pivot = right
-        pivot = left
-        
-        '''if int(colecao[left]['weight']) < int(colecao[mid]['weight']):
-            if int(colecao[mid]['weight']) < int(colecao[right]['weight']):
-                pivot = mid
-        elif int(colecao[left]['weight']) < int(colecao[right]['weight']):
-            pivot = left'''
+        pivot = right
         return pivot
 
 
     def partition(self, colecao, left, right):
-        pivotIndex = self.get_pivot(colecao, left, right)
-        pivotValue = colecao[pivotIndex]
-        colecao[pivotIndex], colecao[left] = colecao[left], colecao[pivotIndex]
+        pindex = self.get_pivot(colecao, left, right)
+        pvalue = colecao[pindex]
+        colecao[pindex], colecao[left] = colecao[left], colecao[pindex]
         aux = left
 
         for i in range(left, right + 1):
-            if int(colecao[i]['weight']) < int(pivotValue['weight']):
+            if int(colecao[i]['weight']) < int(pvalue['weight']):
                 aux += 1
                 colecao[i], colecao[aux] = colecao[aux], colecao[i]
         colecao[left], colecao[aux] = colecao[aux], colecao[left]
@@ -189,25 +181,17 @@ class QuickSort1(object):
 
         
     def get_pivot(self, colecao, left, right):
-        #mid = (right + left) // 2
-        pivot = right
-        
-        '''if int(colecao[left]['weight']) < int(colecao[mid]['weight']):
-            if int(colecao[mid]['weight']) < int(colecao[right]['weight']):
-                pivot = mid
-        elif int(colecao[left]['weight']) < int(colecao[right]['weight']):
-            pivot = left'''
+        pivot = left     
         return pivot
 
 
     def partition(self, colecao, left, right):
-        pivotIndex = self.get_pivot(colecao, left, right)
-        pivotValue = colecao[pivotIndex]
-        colecao[pivotIndex], colecao[left] = colecao[left], colecao[pivotIndex]
+        pindex = self.get_pivot(colecao, left, right)
+        pvalue = colecao[pindex]
         aux = left
 
         for i in range(left, right + 1):
-            if int(colecao[i]['weight']) < int(pivotValue['weight']):
+            if int(colecao[i]['weight']) < int(pvalue['weight']):
                 aux += 1
                 colecao[i], colecao[aux] = colecao[aux], colecao[i]
         colecao[left], colecao[aux] = colecao[aux], colecao[left]

@@ -27,10 +27,13 @@ def main(vertices, sort, pivo):
         algoritimoDeOrdenacao = QuickSort2()
     elif sort == 'quick' and pivo =='3':
         algoritimoDeOrdenacao = QuickSort3()
-    
 
-    arquivoJson = '../graph/'+vertices+'.json'
-    arquivoDeSaida = '../results/'+vertices +'-'+sort+'_sort'+'.txt'
+    if pivo == None:
+        arquivoJson = '../graph/'+vertices+'.json'
+        arquivoDeSaida = '../results/'+vertices +'-'+sort+'_sort'+'.txt'
+    else: 
+        arquivoJson = '../graph/'+vertices+'.json'
+        arquivoDeSaida = '../results/'+vertices +'-'+sort+'_sort'+'-pivot_'+pivo+'.txt'
 
 
     grafo = Grafo()
