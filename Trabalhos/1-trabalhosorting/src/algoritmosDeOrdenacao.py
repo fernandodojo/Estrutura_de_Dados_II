@@ -198,3 +198,31 @@ class QuickSort1(object):
 
         return (aux)
 
+
+class CountSort(object):
+    def ordenar(self, colecao):
+        n = len(colecao)
+        mx = int(colecao[0]['weight'])
+        for i in colecao:
+            if int(i['weight'])> mx:
+                mx = int(i['weight'])
+        mx = mx+1
+
+        B = [0]*mx
+        C = [0]*n
+
+        for i in colecao:
+            B[int(i['weight'])] += 1
+
+        for i in range(len(B)-1):
+            B[i+1] += B[i]
+
+        for i in range(len(colecao)):
+            C[B[int(colecao[i]['weight'])]-1] = colecao[i]
+            B[int(colecao[i]['weight'])] -=1
+
+        for i in range(0, len(C)):
+            colecao[i] = C[i]
+
+        return colecao
+
