@@ -3,6 +3,7 @@ from grafo import Grafo
 from algoritmosDeOrdenacao import *
 from utils import *
 import click
+import time
 
 
 @click.command()
@@ -12,7 +13,8 @@ import click
 
 
 def main(vertices, sort, pivo):
-
+	
+	
     if sort == 'insert':
         algoritimoDeOrdenacao = InsertionSort()
     elif sort == 'select':
@@ -34,6 +36,8 @@ def main(vertices, sort, pivo):
     elif sort == 'count':
         algoritimoDeOrdenacao = CountSort()
 
+    start = time.time()
+
     if sort == 'quick' and pivo != None: 
         arquivoJson = '../graph/'+vertices+'.json'
         arquivoDeSaida = '../results/'+vertices +'-'+sort+'_sort'+'-pivot_'+pivo+'.txt'
@@ -51,6 +55,10 @@ def main(vertices, sort, pivo):
 
     arvoreGeradoraMinima =  grafo.executarKruskal()
     SalvarArvoreGeradoraMinimaEmArquivo(arquivoDeSaida, arvoreGeradoraMinima)
+    stop = time.time()
+
+    print(stop-start)
 
 if __name__ == "__main__":
-    main()
+    
+    main()    
