@@ -26,8 +26,8 @@ def main():
 
   
 
-    arquivoJson = '../graph/7.json'
-    arquivoDeSaida = '../results/7-InsertionSort.txt'''
+    arquivoJson = '../graph/100000.json'
+    arquivoDeSaida = '../results/100000-InsertionSort.txt'''
 
 
     grafo = Grafo()
