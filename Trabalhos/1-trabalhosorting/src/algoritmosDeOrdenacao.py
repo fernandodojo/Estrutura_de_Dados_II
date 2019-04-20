@@ -198,6 +198,34 @@ class QuickSort1(object):
 
         return (aux)
 
+class HeapSort(object):   
+    def ordenar(self, colecao):
+        size = len(colecao)
+        self.heapify(colecao, size)
+        end = size-1
+        while(end > 0):
+            colecao[0], colecao[end] = colecao[end], colecao[0]
+            self.switch(colecao, 0, end)
+            end -= 1
+        return colecao       
+    def switch(self, colecao, i, size):
+        l = 2*i+1
+        r = 2*i+2
+        largest = i
+        if l <= size-1 and int(colecao[l]['weight']) > int(colecao[i]['weight']):
+            largest = l
+        if r <= size-1 and int(colecao[r]['weight']) > int(colecao[largest]['weight']):
+            largest = r
+        if largest != i:
+            colecao[i], colecao[largest] = colecao[largest], colecao[i]
+            self.switch(colecao, largest, size)
+
+    def heapify(self, colecao, size):
+        p = (size//2)-1
+        while p>=0:
+            self.switch(colecao, p, size)
+            p -= 1
+
 
 class CountSort(object):
     def ordenar(self, colecao):

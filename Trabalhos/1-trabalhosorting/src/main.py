@@ -21,7 +21,8 @@ def main(vertices, sort, pivo):
         algoritimoDeOrdenacao = ShellSort()
     elif sort == 'merge':
         algoritimoDeOrdenacao = MergeSort()
-
+    elif sort == 'heap':
+        algoritimoDeOrdenacao = HeapSort()
     elif sort == 'quick' and pivo == None:
         algoritimoDeOrdenacao = QuickSort3()
     elif sort == 'quick' and pivo =='1':
