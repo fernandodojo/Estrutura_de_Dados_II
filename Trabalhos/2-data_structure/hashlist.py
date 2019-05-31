@@ -18,9 +18,10 @@ class HashWord:
 
     def __str__(self):
         return ("r:"+str(self.repeticoes) + " k:"+str(self.palavra_key)+" " + self.palavra)
-    
+
     def __repr__(self):
         return ("r:"+str(self.repeticoes) + " k:"+str(self.palavra_key)+" " + self.palavra)
+
 
 class Hasharray:
     def __init__(self):
@@ -28,35 +29,49 @@ class Hasharray:
         self.array = [[] for _ in range(self.size)]
 
     def _get_hash(self, key):
-        return key% self.size
+        return key % self.size
 
     def add(self, newhashword):
-        index = self._get_hash(newhashword.get_palavra_key())       
+        index = self._get_hash(newhashword.get_palavra_key())
         bucket = self.array[index]
         key_exists = False
-        
-        for i in range (len(bucket)):
+
+        for i in range(len(bucket)):
             if bucket[i].get_palavra_key() == newhashword.get_palavra_key() and bucket[i].get_palavra() == newhashword.get_palavra():
-                key_exists = True 
+                key_exists = True
                 break
         if key_exists:
             bucket[i].set_repeticoes()
         else:
-            bucket.append(newhashword)         
-
+            bucket.append(newhashword)
 
     def search(self, key):
         index = self._get_hash(key)
         if self.array[index] is not None:
             for x in self.array[index]:
+                print(x)
                 if(x.get_palavra_key() == key):
+                    print("Resultado de busca:", x)
                     return x
         return None
-        
+
     def printhash(self):
-        for i in range (1, len(self.array)):
+        for i in range(1, len(self.array)):
             print(i, self.array[i])
-                            
+
+    def adiciona_lista(self):
+        lista = []
+        for palavra in table.array:
+            for item in palavra:
+                lista.append(item)
+        return lista
+
+    def lista_ordenada(self):
+        l = self.adiciona_lista()
+        l = sorted(l, key=lambda item: item.repeticoes)
+        print("\n\n###LISTA ORDENADA###")
+        for x in l:
+            print(x)
 
 
 def key_generator(word):
@@ -65,14 +80,12 @@ def key_generator(word):
         key += ord(char)
     return key
 
-print(key_generator('casa'))
-
 
 table = Hasharray()
 
 ENTRADA = 'ptbr.txt'
 
-with open(ENTRADA, 'r') as entrada:   
+with open(ENTRADA, 'r') as entrada:
     palavra = entrada.readlines()
 
 for x in palavra:
@@ -81,20 +94,6 @@ for x in palavra:
 
 table.printhash()
 
-#print("\n\n", table.search(204))
+table.lista_ordenada()
 
-
-
-
-listafinal= []
-for palavra in table.array:
-    for item in palavra:
-        listafinal.append(item)
-print(listafinal)
-        
-listafinal = sorted(listafinal, key = lambda item: item.repeticoes)
-
-print(listafinal)
-
- 
-
+table.search(key_generator('povo\n'))
