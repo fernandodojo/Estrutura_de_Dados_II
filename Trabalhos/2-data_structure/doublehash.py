@@ -1,3 +1,5 @@
+import time
+import resource
 class HashWord:
     def __init__(self, key, palavra):
         self.palavra_key = key
@@ -21,7 +23,7 @@ class HashWord:
 
 
 class HashTable:
-    def __init__(self, size=800):
+    def __init__(self, size=100000):
         self.size = size
         self.array = [None] * self.size
         self.n = 0
@@ -130,10 +132,11 @@ def key_generator(word):
         key += ord(char)
     return key
 
+time_start = time.clock()
 
-table = HashTable()
+table = HashTable(10000)
 
-ENTRADA = 'ptbr.txt'
+ENTRADA = '1000.txt'
 
 with open(ENTRADA, 'r') as entrada:
     word = entrada.readlines()
@@ -141,8 +144,19 @@ with open(ENTRADA, 'r') as entrada:
 for x in word:
     table.insert(HashWord(key_generator(x), x))
 
-table.display_table()
+
+
+
+
+#table.display_table()
 
 table.lista_ordenada()
+time_elapsed = (time.clock() - time_start)
+print("Tempo para carregar: ", time_elapsed)
+print("Memória usada: ",resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
+#table.search(key_generator("povo"))
 
-table.search(key_generator("povo"))
+
+'''time_elapsed = (time.clock() - time_start)
+print("Tempo para carregar: ", time_elapsed)
+print("Memória usada: ",resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)'''

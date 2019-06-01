@@ -3,8 +3,8 @@ import re
 import string
 
 
-ENTRADA = 'ptbr.txt'
-SAIDA = 'palavras.txt'
+ENTRADA = 'palavras.txt'
+SAIDA = 'ptbr.txt'
 
 
 listapalavras = []

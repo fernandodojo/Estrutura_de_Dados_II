@@ -1,4 +1,6 @@
 import sys
+import time
+import resource
 
 
 class Node():
@@ -222,15 +224,19 @@ class RedBlackTree():
 
 
 if __name__ == "__main__":
+    time_start = time.clock()
     a = RedBlackTree()
-    ENTRADA = 'ptbr.txt'
+    ENTRADA = '1000.txt'
     with open(ENTRADA, 'r') as entrada:
         palavra = entrada.readlines()
 
     for i in palavra:
         a.inserir(i)
 
-    print("\n\n#### ARVORE  ##( RAIZ ----> FOLHAS )####")
-    a.printtree()
-    a.lista_ordenada()
+    #print("\n\n#### ARVORE  ##( RAIZ ----> FOLHAS )####")
+    #a.printtree()
+    #a.lista_ordenada()
     a.achar('televisao')
+    time_elapsed = (time.clock() - time_start)
+    print("Tempo para carregar: ", time_elapsed)
+    print("Memória usada: ",resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
